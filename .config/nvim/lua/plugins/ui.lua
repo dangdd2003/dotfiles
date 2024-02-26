@@ -20,23 +20,11 @@ return {
     "nvimdev/dashboard-nvim",
     event = "VimEnter",
     opts = function(_, opts)
-      local logo = [[
-        ██████╗       ██████╗ ███████╗██╗   ██╗
-        ██╔══██╗      ██╔══██╗██╔════╝██║   ██║
-       ████╗ ██║█████╗██║  ██║█████╗  ██║   ██║
-       ╚██╔╝ ██║╚════╝██║  ██║██╔══╝  ╚██╗ ██╔╝
-        ██████╔╝      ██████╔╝███████╗ ╚████╔╝
-        ╚═════╝       ╚═════╝ ╚══════╝  ╚═══╝
-      ]]
-
-      logo = string.rep("\n", 8) .. logo .. "\n\n"
-
       local file_browser = function()
         local fb_actions = require("telescope").extensions.file_browser
         fb_actions.file_browser()
       end
 
-      opts.config.header = vim.split(logo, "\n")
       table.insert(opts.config.center, 2, {
         action = file_browser,
         desc = "  File Browser",
@@ -58,8 +46,8 @@ return {
       options = {
         -- section_separators = { left = "", right = "" },
         -- component_separators = { left = "", right = "" },
-        component_separators = { left = "", right = "" },
-        section_separators = { left = "", right = "" },
+        -- component_separators = { left = "", right = "" },
+        -- section_separators = { left = "", right = "" },
       },
     },
   },
