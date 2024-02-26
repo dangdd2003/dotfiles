@@ -107,88 +107,88 @@ local plugins = {
   },
 
   -- telescope
-  -- {
-  --   "nvim-telescope/telescope.nvim",
-  --   dependencies = {
-  --     "nvim-telescope/telescope-file-browser.nvim",
-  --   },
-  --   keys = {
-  --     {
-  --       "<leader>fB",
-  --       function()
-  --         local builtin = require("telescope.builtin")
-  --         builtin.buffers()
-  --       end,
-  --       desc = "Find buffers"
-  --     },
-  --     {
-  --       "<leader>fb",
-  --       function()
-  --         local fb_actions = require("telescope").extensions.file_browser
-  --         fb_actions.file_browser()
-  --       end,
-  --       desc = "File Browser",
-  --     }
-  --   },
-  --   config = function(_, opts)
-  --     local telescope = require("telescope")
-  --     local actions = require("telescope.actions")
-  --     local fb_actions = require("telescope").extensions.file_browser.actions
-  --     local function telescope_buffer_dir()
-  --       return vim.fn.expand("%:p:h")
-  --     end
-  --     opts.extensions = {
-  --       file_browser = {
-  --         path = "%:p:h",
-  --         cwd = telescope_buffer_dir(),
-  --         respect_gitignore = false,
-  --         hidden = true,
-  --         no_ignore = true,
-  --         follow_symlinks = true,
-  --         grouped = true,
-  --         previewer = false,
-  --         layout_config = {
-  --           horizontal = {
-  --             prompt_position = "top",
-  --             preview_width = 0.55,
-  --             results_width = 0.8,
-  --           },
-  --           vertical = {
-  --             mirror = false,
-  --           },
-  --           width = 0.87,
-  --           height = 0.80,
-  --           preview_cutoff = 120,
-  --         },
-  --         initial_mode = "normal",
-  --         theme = "dropdown",
-  --         hijack_netrw = true,
-  --         mappings = {
-  --           ["n"] = {
-  --             ["h"] = fb_actions.goto_parent_dir,
-  --             ["<bs>"] = fb_actions.goto_parent_dir,
-  --             ["<C-u>"] = function(prompt_bufnr)
-  --               for i = 1, 10 do
-  --                 actions.move_selection_previous(prompt_bufnr)
-  --               end
-  --             end,
-  --             ["<C-d>"] = function(prompt_bufnr)
-  --               for i = 1, 10 do
-  --                 actions.move_selection_next(prompt_bufnr)
-  --               end
-  --             end,
-  --           },
-  --         },
-  --       }
-  --     }
-  --     dofile(vim.g.base46_cache .. "telescope")
-  --     telescope.setup(opts)
-  --     -- load extensions
-  --     for _, ext in ipairs(opts.extensions_list) do
-  --       telescope.load_extension(ext)
-  --     end
-  --     require("telescope").load_extension("file_browser")
-  --   end
-  -- },
+  {
+    "nvim-telescope/telescope.nvim",
+    dependencies = {
+      "nvim-telescope/telescope-file-browser.nvim",
+    },
+    keys = {
+      {
+        "<leader>fB",
+        function()
+          local builtin = require("telescope.builtin")
+          builtin.buffers()
+        end,
+        desc = "Find buffers"
+      },
+      {
+        "<leader>fb",
+        function()
+          local fb_actions = require("telescope").extensions.file_browser
+          fb_actions.file_browser()
+        end,
+        desc = "File Browser",
+      }
+    },
+    config = function(_, opts)
+      local telescope = require("telescope")
+      local actions = require("telescope.actions")
+      local fb_actions = require("telescope").extensions.file_browser.actions
+      local function telescope_buffer_dir()
+        return vim.fn.expand("%:p:h")
+      end
+      opts.extensions = {
+        file_browser = {
+          path = "%:p:h",
+          cwd = telescope_buffer_dir(),
+          respect_gitignore = false,
+          hidden = true,
+          no_ignore = true,
+          follow_symlinks = true,
+          grouped = true,
+          previewer = false,
+          layout_config = {
+            horizontal = {
+              prompt_position = "top",
+              preview_width = 0.55,
+              results_width = 0.8,
+            },
+            vertical = {
+              mirror = false,
+            },
+            width = 0.87,
+            height = 0.80,
+            preview_cutoff = 120,
+          },
+          initial_mode = "normal",
+          theme = "dropdown",
+          hijack_netrw = true,
+          mappings = {
+            ["n"] = {
+              ["h"] = fb_actions.goto_parent_dir,
+              ["<bs>"] = fb_actions.goto_parent_dir,
+              ["<C-u>"] = function(prompt_bufnr)
+                for i = 1, 10 do
+                  actions.move_selection_previous(prompt_bufnr)
+                end
+              end,
+              ["<C-d>"] = function(prompt_bufnr)
+                for i = 1, 10 do
+                  actions.move_selection_next(prompt_bufnr)
+                end
+              end,
+            },
+          },
+        }
+      }
+      dofile(vim.g.base46_cache .. "telescope")
+      telescope.setup(opts)
+      -- load extensions
+      for _, ext in ipairs(opts.extensions_list) do
+        telescope.load_extension(ext)
+      end
+      require("telescope").load_extension("file_browser")
+    end
+  },
 }
 return plugins
