@@ -16,6 +16,7 @@ return {
     },
   },
 
+  -- dashboard - startup UI
   {
     "nvimdev/dashboard-nvim",
     event = "VimEnter",
@@ -58,7 +59,7 @@ return {
     opts = {
       ui = {
         border = "rounded",
-        height = 0.8,
+        height = 0.75,
       },
     },
   },
