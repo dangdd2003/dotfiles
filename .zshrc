@@ -100,4 +100,5 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
 alias refreshenv="source ~/.zshrc"
+alias lg="lazygit"
 eval "$(zoxide init zsh)"
