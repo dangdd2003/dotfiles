@@ -101,4 +101,8 @@ source $ZSH/oh-my-zsh.sh
 #
 alias refreshenv="source ~/.zshrc"
 alias lg="lazygit"
+alias open="xdg-open"
 eval "$(zoxide init zsh)"
+
+# Reset neovim history
+alias resetnvim="rm -rf ~/.local/state/nvim ~/.cache/nvim"
