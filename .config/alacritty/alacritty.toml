@@ -33,6 +33,10 @@ bindings = [{ mouse = "Right", action = "Paste" }]
 [keyboard]
 bindings = [
 { key = "N", mods = "Control|Shift", action = "CreateNewWindow" },
-{ key = "Enter", mods = "Alt", action = "ToggleFullscreen" },
+{ key = "Enter", mods = "Alt", action = "ToggleMaximized" },
 { key = "F11", action = "ToggleFullscreen" },
+{ key = "W", mods = "Control|Shift", action = "Quit" },
+{ key = "PageUp", action = "ScrollPageUp" },
+{ key = "PageDown", action = "ScrollPageDown" },
+{ key = "+", mods = "Control|Shift", action = "ResetFontSize"},
 ]
