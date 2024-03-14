@@ -1,2 +1,3 @@
 .config/nvim.bak
 .git
+.gitmodules
