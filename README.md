@@ -5,7 +5,7 @@
 ### Packages
 
 ```shell
-sudo pacman -S git stow unzip nodejs npm zsh alacritty tmux neovim neofetch ripgrep fd lazygit
+sudo pacman -S git stow unzip nodejs npm zsh alacritty tmux neovim neofetch ripgrep fd fzf lazygit
 ```
 
 ### Nerd Fonts
@@ -17,9 +17,9 @@ sudo pacman -S git stow unzip nodejs npm zsh alacritty tmux neovim neofetch ripg
 - Hack fonts installation
 
 ```shell
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/Hack.zip
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.0/Hack.zip
 unzip -q Hack.zip -d Hack
-sudo cp Hack /usr/share/fonts
+sudo cp -r Hack /usr/share/fonts
 ```
 
 ### [Oh-my-zsh](https://ohmyz.sh/)
