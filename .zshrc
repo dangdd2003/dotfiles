@@ -102,7 +102,12 @@ source $ZSH/oh-my-zsh.sh
 alias refreshenv="source ~/.zshrc"
 alias lg="lazygit"
 alias open="xdg-open"
+alias n="nvim"
+alias t="tmux"
 eval "$(zoxide init --cmd cd zsh)"
+eval "$(fzf --zsh)"
+export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.git'"
 
 # Reset neovim history
 alias resetnvim="rm -rf ~/.local/state/nvim ~/.cache/nvim"
+# eval "$(gh copilot alias -- zsh)"
