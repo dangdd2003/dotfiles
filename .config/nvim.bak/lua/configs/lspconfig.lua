@@ -97,9 +97,6 @@ local servers = {
       clangdFileStatus = true,
     },
   },
-
-  -- java lsp (basic)
-  jdtls = {},
 }
 
 for name, opts in pairs(servers) do

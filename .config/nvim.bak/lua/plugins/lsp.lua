@@ -2,6 +2,7 @@ return {
   -- auto stop lsp
   {
     "zeioth/garbage-day.nvim",
+    enabled = false,
     dependencies = "neovim/nvim-lspconfig",
     event = "VeryLazy",
     opts = {
@@ -16,7 +17,7 @@ return {
     "williamboman/mason.nvim",
     opts = function(_, opts)
       opts.ensure_installed = opts.ensure_installed or {}
-      vim.list_extend(opts.ensure_installed, { "clangd", "pyright", "ruff-lsp", "jdtls" })
+      vim.list_extend(opts.ensure_installed, { "clangd", "pyright", "ruff-lsp" })
     end,
   },
 

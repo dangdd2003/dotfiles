@@ -23,6 +23,7 @@ return {
   -- notiry
   {
     "rcarriga/nvim-notify",
+    -- enabled = false,
     keys = {
       {
         "<leader>un",
@@ -49,6 +50,7 @@ return {
   -- noice
   {
     "folke/noice.nvim",
+    -- enabled = false,
     event = "VeryLazy",
     dependencies = {
       "MunifTanjim/nui.nvim",
