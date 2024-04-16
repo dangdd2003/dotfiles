@@ -5,70 +5,66 @@ local capabilities = require("nvchad.configs.lspconfig").capabilities
 local lspconfig = require "lspconfig"
 local servers = {
   -- web stuff
-  -- tsserver = {
-  --   root_dir = function(...)
-  --     return require("lspconfig.util").root_pattern ".git" (...)
-  --   end,
-  --   single_file_support = true,
-  --   settings = {
-  --     typescript = {
-  --       inlayHints = {
-  --         includeInlayParameterNameHints = "literal",
-  --         includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-  --         includeInlayFunctionParameterTypeHints = true,
-  --         includeInlayVariableTypeHints = false,
-  --         includeInlayPropertyDeclarationTypeHints = true,
-  --         includeInlayFunctionLikeReturnTypeHints = true,
-  --         includeInlayEnumMemberValueHints = true,
-  --       },
-  --     },
-  --     javascript = {
-  --       inlayHints = {
-  --         includeInlayParameterNameHints = "all",
-  --         includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-  --         includeInlayFunctionParameterTypeHints = true,
-  --         includeInlayVariableTypeHints = true,
-  --         includeInlayPropertyDeclarationTypeHints = true,
-  --         includeInlayFunctionLikeReturnTypeHints = true,
-  --         includeInlayEnumMemberValueHints = true,
-  --       },
-  --     },
-  --   },
-  -- },
-  -- html = {},
-  -- cssls = {},
+  tsserver = {
+    root_dir = function(...)
+      return require("lspconfig.util").root_pattern ".git"(...)
+    end,
+    single_file_support = true,
+    settings = {
+      completions = {
+        completeFunctionCalls = true,
+      },
+      typescript = {
+        inlayHints = {
+          includeInlayParameterNameHints = "literal",
+          includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+          includeInlayFunctionParameterTypeHints = true,
+          includeInlayVariableTypeHints = false,
+          includeInlayPropertyDeclarationTypeHints = true,
+          includeInlayFunctionLikeReturnTypeHints = true,
+          includeInlayEnumMemberValueHints = true,
+        },
+      },
+      javascript = {
+        inlayHints = {
+          includeInlayParameterNameHints = "all",
+          includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+          includeInlayFunctionParameterTypeHints = true,
+          includeInlayVariableTypeHints = true,
+          includeInlayPropertyDeclarationTypeHints = true,
+          includeInlayFunctionLikeReturnTypeHints = true,
+          includeInlayEnumMemberValueHints = true,
+        },
+      },
+    },
+  },
+  html = {},
+  cssls = {},
 
   -- python
   pyright = {
     settings = {
       python = {
         analysis = {
-          autoSearchPaths = true,
-          typeCheckingMode = "basic",
+          -- typeCheckingMode = "strict",
         },
       },
     },
   },
   ruff_lsp = {
-    keys = {
-      {
-        "<leader>co",
-        function()
-          vim.lsp.buf.code_action {
-            apply = true,
-            context = {
-              only = { "source.organizeImports" },
-              diagnostics = {},
-            },
-          }
-        end,
-        desc = "Organize Imports",
-      },
-    },
+    on_attach = function(client, _)
+      if client.name == "ruff_lsp" then
+        -- Disable hover in favor of Pyright
+        client.server_capabilities.hoverProvider = false
+      end
+    end,
   },
 
   -- c/c++
   clangd = {
+    capabilities = {
+      offsetEncoding = { "utf-16" },
+    },
     cmd = {
       "clangd",
       "--background-index",
@@ -97,6 +93,9 @@ local servers = {
       clangdFileStatus = true,
     },
   },
+
+  -- markdown
+  marksman = {},
 }
 
 for name, opts in pairs(servers) do

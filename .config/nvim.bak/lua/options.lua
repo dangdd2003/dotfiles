@@ -24,25 +24,8 @@ opt.signcolumn = "yes"
 opt.termguicolors = true
 opt.smartindent = true
 opt.wrap = false
+opt.cmdheight = 1
 
 -- Undercurl
 vim.cmd [[let &t_Cs = "\e[4:3m"]]
 vim.cmd [[let &t_Ce = "\e[4:0m"]]
-
--- Restore cursor position
-local autocmd = vim.api.nvim_create_autocmd
-
-autocmd("BufReadPost", {
-  pattern = "*",
-  callback = function()
-    local line = vim.fn.line "'\""
-    if
-      line > 1
-      and line <= vim.fn.line "$"
-      and vim.bo.filetype ~= "commit"
-      and vim.fn.index({ "xxd", "gitrebase" }, vim.bo.filetype) == -1
-    then
-      vim.cmd 'normal! g`"'
-    end
-  end,
-})
