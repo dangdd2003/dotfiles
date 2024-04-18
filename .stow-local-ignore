@@ -1,4 +1,5 @@
 .config/nvim.bak
 .git
 .gitmodules
+.gitignore
 README.md
