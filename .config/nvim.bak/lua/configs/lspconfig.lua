@@ -38,6 +38,12 @@ local servers = {
       },
     },
   },
+  tailwindcss = {},
+  eslint = {
+    settings = {
+      workingDirectories = { mode = "auto" },
+    },
+  },
   html = {},
   cssls = {},
 
@@ -62,9 +68,6 @@ local servers = {
 
   -- c/c++
   clangd = {
-    capabilities = {
-      offsetEncoding = { "utf-16" },
-    },
     cmd = {
       "clangd",
       "--background-index",
@@ -94,6 +97,9 @@ local servers = {
     },
   },
 
+  -- java
+  jdtls = {},
+
   -- markdown
   marksman = {},
 }
@@ -102,5 +108,15 @@ for name, opts in pairs(servers) do
   opts.on_init = on_init
   opts.on_attach = on_attach
   opts.capabilities = capabilities
+
+  -- specialize for clangd
+  if name == "clangd" then
+    opts.capabilities = vim.tbl_deep_extend("force", capabilities, { offsetEncoding = { "utf-16" } })
+    opts.on_attach = function(client, bufnr)
+      require("nvchad.configs.lspconfig").on_attach(client, bufnr)
+      require("clangd_extensions.inlay_hints").setup_autocmd()
+      require("clangd_extensions.inlay_hints").set_inlay_hints()
+    end
+  end
   lspconfig[name].setup(opts)
 end

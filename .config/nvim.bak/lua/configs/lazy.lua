@@ -13,9 +13,13 @@ return {
   },
 
   checker = {
-    enabled = true,
+    enabled = false,
     notify = true,
     frequency = 86400,
+  },
+
+  change_detection = {
+    notify = false,
   },
 
   performance = {
