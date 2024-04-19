@@ -1,13 +1,12 @@
 require "nvchad.mappings"
 require("d-dev.discipline").cowboy()
 
--- add yours here
-
 local map = vim.keymap.set
 
--- map("n", ";", ":", { desc = "CMD enter command mode" })
--- map("i", "jk", "<ESC>")
+-- Quick enter command
+map("n", ";", ":", { desc = "CMD enter command mode" })
 
+-- Save with normal basic ctrl-s
 map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
 
 -- Toggle options
@@ -18,6 +17,27 @@ end, { desc = "Toggle Transparency" })
 map("n", "<leader>ut", function()
   require("base46").toggle_theme()
 end, { desc = "Toggle Theme" })
+
+local conceallevel = vim.o.conceallevel > 0 and vim.o.conceallevel or 3
+map("n", "<leader>uc", function()
+  if vim.o.conceallevel == 0 then
+    vim.o.conceallevel = conceallevel
+  else
+    vim.o.conceallevel = 0
+  end
+  vim.notify("Conceal level: " .. vim.o.conceallevel, vim.log.levels.INFO)
+end, { desc = "Toggle Conceal level" })
+
+map("n", "<leader>us", function()
+  -- only spell option require get() to retrun boolean type
+  if vim.opt_local.spell:get() == true then
+    vim.opt.spell = false
+    vim.notify "Disable Spell checking for current buffer"
+  else
+    vim.opt.spell = true
+    vim.notify "Enable Spell checking for current buffer"
+  end
+end, { desc = "Toggle Spell checking" })
 
 map("n", "<leader>uf", function()
   if vim.g.disable_autoformat or vim.b.disable_autoformat then

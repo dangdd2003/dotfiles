@@ -26,6 +26,7 @@ require("lazy").setup({
   },
 
   { import = "plugins" },
+  -- { import = "d-dev.copilot" },
 }, lazy_config)
 
 -- load theme

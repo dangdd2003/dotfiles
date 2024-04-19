@@ -64,4 +64,31 @@ return {
       end
     end,
   },
+
+  -- additional lsp
+  {
+    "nvimtools/none-ls.nvim",
+    event = "User FilePost",
+    opts = function(_, opts)
+      local nls = require "null-ls"
+      opts.root_dir = opts.root_dir or require("null-ls.utils").root_pattern(".null-ls-root", "Makefile", ".git")
+      opts.sources = {
+        nls.builtins.diagnostics.markdownlint,
+        -- nls.builtins.formatting.prettier,
+      }
+      -- local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+      -- opts.on_attach = function(client, bufnr)
+      --   if client.supports_method "textDocument/formatting" then
+      --     vim.api.nvim_clear_autocmds { group = augroup, buffer = bufnr }
+      --     vim.api.nvim_create_autocmd("BufWritePre", {
+      --       group = augroup,
+      --       buffer = bufnr,
+      --       callback = function()
+      --         vim.lsp.buf.format { async = false }
+      --       end,
+      --     })
+      --   end
+      -- end
+    end,
+  },
 }

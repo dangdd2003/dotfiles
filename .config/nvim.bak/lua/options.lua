@@ -25,6 +25,8 @@ opt.termguicolors = true
 opt.smartindent = true
 opt.wrap = false
 opt.cmdheight = 1
+opt.spelllang = { "en" }
+opt.conceallevel = 2
 
 -- Undercurl
 vim.cmd [[let &t_Cs = "\e[4:3m"]]

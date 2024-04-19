@@ -1,15 +1,21 @@
--- This file  needs to have same structure as nvconfig.lua
--- https://github.com/NvChad/NvChad/blob/v2.5/lua/nvconfig.lua
-
 ---@type ChadrcConfig
 local M = {}
 
 M.ui = {
-  theme = "blossom_light",
+  theme = "dark_horizon",
   theme_toggle = { "dark_horizon", "blossom_light" },
   transparency = false,
 
   nvdash = {
+    header = {
+      "                                        ",
+      " ██████╗       ██████╗ ███████╗██╗   ██╗",
+      " ██╔══██╗      ██╔══██╗██╔════╝██║   ██║",
+      "████╗ ██║█████╗██║  ██║█████╗  ██║   ██║",
+      "╚██╔╝ ██║╚════╝██║  ██║██╔══╝  ╚██╗ ██╔╝",
+      " ██████╔╝      ██████╔╝███████╗ ╚████╔╝ ",
+      " ╚═════╝       ╚═════╝ ╚══════╝  ╚═══╝  ",
+    },
     load_on_startup = true,
     buttons = {
       { "  Find File", "Spc f f", "Telescope find_files" },

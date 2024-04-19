@@ -44,85 +44,29 @@ return {
     end,
   },
 
-  -- additional lsp
-  {
-    "nvimtools/none-ls.nvim",
-    event = "User FilePost",
-    opts = function(_, opts)
-      local nls = require "null-ls"
-      opts.root_dir = opts.root_dir or require("null-ls.utils").root_pattern(".null-ls-root", "Makefile", ".git")
-      opts.sources = {
-        nls.builtins.diagnostics.markdownlint,
-        -- nls.builtins.formatting.prettier,
-      }
-      -- local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-      -- opts.on_attach = function(client, bufnr)
-      --   if client.supports_method "textDocument/formatting" then
-      --     vim.api.nvim_clear_autocmds { group = augroup, buffer = bufnr }
-      --     vim.api.nvim_create_autocmd("BufWritePre", {
-      --       group = augroup,
-      --       buffer = bufnr,
-      --       callback = function()
-      --         vim.lsp.buf.format { async = false }
-      --       end,
-      --     })
-      --   end
-      -- end
-    end,
-  },
-
-  -- copilot
-  {
-    "zbirenbaum/copilot.lua",
-    -- enabled = false,
-    event = "User FilePost",
-    cmd = "Copilot",
-    build = ":Copilot auth",
-    opts = {
-      suggestion = { enabled = false },
-      panel = { enabled = false },
-      filetypes = {
-        markdown = true,
-        help = true,
-      },
-    },
-    config = function()
-      require("copilot").setup {}
-    end,
-  },
-
-  -- completion
+  -- auto completion
   {
     "nvim-cmp",
-    dependencies = {
-      {
-        "zbirenbaum/copilot-cmp",
-        dependencies = "copilot.lua",
-        opts = {},
-        config = function()
-          require("copilot_cmp").setup()
-        end,
-      },
-    },
     opts = function(_, opts)
-      table.insert(opts.sources, 1, {
-        name = "copilot",
-        group_index = 1,
-        priority = 100,
-      })
+      opts.experimental = {
+        ghost_text = {
+          hl_group = "CmpGhostText",
+        },
+      }
+      -- change text color of highlight group ghost_text
+      vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
+
       local cmp = require "cmp"
-      cmp.setup {
-        sorting = {
-          comparators = {
-            cmp.config.compare.offset,
-            cmp.config.compare.exact,
-            cmp.config.compare.recently_used,
-            require "clangd_extensions.cmp_scores",
-            cmp.config.compare.kind,
-            cmp.config.compare.sort_text,
-            cmp.config.compare.length,
-            cmp.config.compare.order,
-          },
+      opts.sorting = {
+        comparators = {
+          cmp.config.compare.offset,
+          cmp.config.compare.exact,
+          cmp.config.compare.recently_used,
+          require "clangd_extensions.cmp_scores",
+          cmp.config.compare.kind,
+          cmp.config.compare.sort_text,
+          cmp.config.compare.length,
+          cmp.config.compare.order,
         },
       }
     end,

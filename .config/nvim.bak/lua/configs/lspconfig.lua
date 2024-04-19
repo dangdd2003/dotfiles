@@ -113,7 +113,7 @@ for name, opts in pairs(servers) do
   if name == "clangd" then
     opts.capabilities = vim.tbl_deep_extend("force", capabilities, { offsetEncoding = { "utf-16" } })
     opts.on_attach = function(client, bufnr)
-      require("nvchad.configs.lspconfig").on_attach(client, bufnr)
+      on_attach(client, bufnr)
       require("clangd_extensions.inlay_hints").setup_autocmd()
       require("clangd_extensions.inlay_hints").set_inlay_hints()
     end
