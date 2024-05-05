@@ -1,4 +1,5 @@
 .config/nvim.bak
+.config/chnvim.sh
 .git
 .gitmodules
 .gitignore
