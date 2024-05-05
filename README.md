@@ -4,7 +4,7 @@
 
 ### Packages
 
-```shell
+```bash
 sudo pacman -S git stow unzip nodejs npm zsh alacritty tmux neovim neofetch ripgrep fd fzf lazygit
 ```
 
@@ -16,17 +16,21 @@ sudo pacman -S git stow unzip nodejs npm zsh alacritty tmux neovim neofetch ripg
 
 - Hack fonts installation
 
-```shell
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.0/Hack.zip
-unzip -q Hack.zip -d Hack
-sudo cp -r Hack /usr/share/fonts
+```bash
+sudo pacman -S ttf-hack-nerd
+```
+
+- [Apple Emoji Fonts](https://github.com/samuelngs/apple-emoji-linux)
+
+```bash
+wget https://github.com/samuelngs/apple-emoji-linux/releases/download/v17.4/AppleColorEmoji.ttf -P ~/.local/share/fonts
 ```
 
 ### [Oh-my-zsh](https://ohmyz.sh/)
 
 - Install with `curl`;
 
-```shell
+```bash
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 
@@ -34,13 +38,13 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 
   - [Syntax highlighting](https://github.com/zsh-users/zsh-syntax-highlighting):
 
-  ```shell
+  ```bash
   git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
   ```
 
   - [Auto suggestions](https://github.com/zsh-users/zsh-syntax-highlighting):
 
-  ```shell
+  ```bash
   git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
   ```
 
@@ -48,7 +52,16 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 
 - [Tpm](https://github.com/tmux-plugins/tpm) Plugins Manager for [Tmux](https://github.com/tmux/tmux)
 
-- [Catppuccin Theme](https://github.com/catppuccin/alacritty) for [Alacritty](https://github.com/alacritty/alacritty)
+```bash
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+```
+
+- [Theme](https://github.com/alacritty/alacritty-theme) for [Alacritty](https://alacritty.org)
+
+```bash
+mkdir -p ~/.config/alacritty/themes
+git clone https://github.com/alacritty/alacritty-theme ~/.config/alacritty/themes
+```
 
 ## Install Dotfiles
 
@@ -56,29 +69,29 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 
 - https:
 
-```shell
+```bash
 git clone https://github.com/dangdd2003/dotfiles.git ~/dotfiles
 ```
 
-- ssh:
+- ssh (developer):
 
-```shell
+```bash
 git clone git@github.com:dangdd2003/dotfiles.git ~/dotfiles
 ```
 
 ### Link configuration file
 
-- Link only config file must create parent folder first:
+- Linking only config file must create parent folder first:
 
-```shell
+```bash
 mkdir ~/.config/alacritty
 mkdir ~/.config/tmux
 mkdir ~/.config/neofetch
 ```
 
-- Use GNU Stow to link file;
+- Use GNU Stow to link file:
 
-```shell
+```bash
 cd ~/dotfiles
 stow .
 ```
