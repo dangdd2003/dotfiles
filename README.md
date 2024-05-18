@@ -26,28 +26,6 @@ sudo pacman -S ttf-hack-nerd
 wget https://github.com/samuelngs/apple-emoji-linux/releases/download/v17.4/AppleColorEmoji.ttf -P ~/.local/share/fonts
 ```
 
-### [Oh-my-zsh](https://ohmyz.sh/)
-
-- Install with `curl`;
-
-```bash
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-```
-
-- Plugins:
-
-  - [Syntax highlighting](https://github.com/zsh-users/zsh-syntax-highlighting):
-
-  ```bash
-  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-  ```
-
-  - [Auto suggestions](https://github.com/zsh-users/zsh-syntax-highlighting):
-
-  ```bash
-  git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-  ```
-
 ### Additional
 
 - [Tpm](https://github.com/tmux-plugins/tpm) Plugins Manager for [Tmux](https://github.com/tmux/tmux)
