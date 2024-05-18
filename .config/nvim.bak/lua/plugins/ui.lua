@@ -80,4 +80,15 @@ return {
       { "<c-b>",function() if not require("noice.lsp").scroll(-4) then return "<c-b>" end end, silent = true,expr = true,desc = "Noice Scroll backward", mode = { "i", "n", "s" } },
     },
   },
+
+  -- discord presence
+  {
+    "IogaMaster/neocord",
+    event = "BufRead",
+    config = function()
+      require("neocord").setup {
+        global_timer = true,
+      }
+    end,
+  },
 }
