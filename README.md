@@ -5,7 +5,7 @@
 ### Packages
 
 ```bash
-sudo pacman -S git stow unzip nodejs npm zsh alacritty tmux neovim neofetch ripgrep fd fzf lazygit
+sudo pacman -S git stow unzip nodejs npm zsh zoxide alacritty tmux neovim neofetch ripgrep fd fzf lazygit
 ```
 
 ### Nerd Fonts
@@ -17,6 +17,7 @@ sudo pacman -S git stow unzip nodejs npm zsh alacritty tmux neovim neofetch ripg
 - Hack fonts installation
 
 ```bash
+# Arch Linux
 sudo pacman -S ttf-hack-nerd
 ```
 
@@ -48,13 +49,13 @@ git clone https://github.com/alacritty/alacritty-theme ~/.config/alacritty/theme
 - https:
 
 ```bash
-git clone https://github.com/dangdd2003/dotfiles.git ~/dotfiles
+git clone --recurse-submodules https://github.com/dangdd2003/dotfiles.git ~/dotfiles
 ```
 
 - ssh (developer):
 
 ```bash
-git clone git@github.com:dangdd2003/dotfiles.git ~/dotfiles
+git clone --recurse-submodules git@github.com:dangdd2003/dotfiles.git ~/dotfiles
 ```
 
 ### Link configuration file

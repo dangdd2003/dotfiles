@@ -33,7 +33,6 @@ zinit light Aloxaf/fzf-tab
 zinit snippet OMZP::git
 zinit snippet OMZP::sudo
 
-
 # Load completions
 autoload -Uz compinit && compinit
 
@@ -68,10 +67,10 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 # Alias
-alias ls='ls --color'
+alias ls='ls --color=auto'
 alias l='ls -lAh'
-alias la='ls -lah'
-alias ll='ls -a'
+alias ll='ls -lah'
+alias la='ls -a'
 
 alias lg='lazygit'
 alias open='zdg-open'
