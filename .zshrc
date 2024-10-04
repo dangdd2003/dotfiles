@@ -1,12 +1,18 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# fi
 
 # Environment settings
 export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --glob '!.git'"
+# export FZF_DEFAULT_COMMAND="fd --type f --strip-cwd-prefix --hidden --follow --exclude .git"
+export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --info=inline --border"
+export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
+export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || bat -n --color=always --style=numbers {} || tree -C {}) 2> /dev/null | head -200' --bind 'ctrl-/:change-preview-window(hidden|right)'"
+export FZF_ALT_C_OPTS="--select-1 --exit-0 --walker-skip .git,node_modules,target --preview 'tree -C {}'"
+
 
 # Zinit & Plugins Directory
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
@@ -21,7 +27,13 @@ fi
 source "${ZINIT_HOME}/zinit.zsh"
 
 # Theme Powerlevel10k
-zinit ice depth=1; zinit light romkatv/powerlevel10k
+# zinit ice depth=1; zinit light romkatv/powerlevel10k
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Theme Oh-My-Posh
+eval "$(oh-my-posh init zsh --config $HOME/.config/oh-my-posh/d-dev.toml)"
 
 # plugins
 zinit light zsh-users/zsh-syntax-highlighting
@@ -38,8 +50,6 @@ autoload -Uz compinit && compinit
 
 zinit cdreplay -q
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # Keybindings
 bindkey '^p' history-search-backward
@@ -67,19 +77,36 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 # Alias
-alias ls='ls --color=auto'
-alias l='ls -lAh'
-alias ll='ls -lah'
-alias la='ls -a'
+# alias ls='ls --color=auto'
+# alias l='ls -lAh'
+# alias ll='ls -lah'
+# alias la='ls -a'
+alias l='eza -lh  --icons=auto' # long list
+alias ls='eza --icons=auto' # short list
+alias ll='eza -lha --icons=auto --sort=name --group-directories-first' # long list all
+alias la='eza -a --icons=auto'
+alias ld='eza -lhD --icons=auto' # long list dirs
+alias lt='eza --icons=auto --tree' # list folder as tree
 
-alias lg='lazygit'
-alias open='zdg-open'
+
+alias ..='cd ..'
+alias ...='cd ../..'
+alias .3='cd ../../..'
+alias .4='cd ../../../..'
+alias .5='cd ../../../../..'
+
 alias n='nvim'
 alias t='tmux'
 alias refreshenv='source ~/.zshrc'
 alias resetnvim="rm -rf ~/.local/state/nvim ~/.cache/nvim"
+alias mkdir='mkdir -p'
+prv() {
+  unset HISTFILE
+  echo "\n\tRunning in private environment, no commands are saved!"
+}
 
 # Shell integration
 eval "$(zoxide init --cmd cd zsh)"
 eval "$(fzf --zsh)"
+eval `dircolors ~/.dir_colors/dircolors`
 # eval "$(gh copilot alias -- zsh)"
