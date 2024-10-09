@@ -81,10 +81,10 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 # alias l='ls -lAh'
 # alias ll='ls -lah'
 # alias la='ls -a'
-alias l='eza -lh  --icons=auto' # long list
-alias ls='eza --icons=auto' # short list
+alias l='eza -lh --icons=auto --sort=name --group-directories-first' # long list
+alias ls='eza --icons=auto --sort=name --group-directories-first' # short list
 alias ll='eza -lha --icons=auto --sort=name --group-directories-first' # long list all
-alias la='eza -a --icons=auto'
+alias la='eza -a --icons=auto --sort=name --group-directories-first' # short list all
 alias ld='eza -lhD --icons=auto' # long list dirs
 alias lt='eza --icons=auto --tree' # list folder as tree
 
@@ -108,5 +108,4 @@ prv() {
 # Shell integration
 eval "$(zoxide init --cmd cd zsh)"
 eval "$(fzf --zsh)"
-eval `dircolors ~/.dir_colors/dircolors`
 # eval "$(gh copilot alias -- zsh)"
