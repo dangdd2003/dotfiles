@@ -1,6 +1,6 @@
-.config/nvim.bak
-.config/chnvim.sh
+.config/neofetch
 .git
 .gitmodules
 .gitignore
+ARCH_SETUP.md
 README.md

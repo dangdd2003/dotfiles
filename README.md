@@ -32,7 +32,8 @@ wget https://github.com/samuelngs/apple-emoji-linux/releases/download/v17.4/Appl
 - [Tpm](https://github.com/tmux-plugins/tpm) Plugins Manager for [Tmux](https://github.com/tmux/tmux)
 
 ```bash
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+mkdir -p ~/.config/tmux/plugins
+git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
 ```
 
 - [Theme](https://github.com/alacritty/alacritty-theme) for [Alacritty](https://alacritty.org)
@@ -49,13 +50,13 @@ git clone https://github.com/alacritty/alacritty-theme ~/.config/alacritty/theme
 - https:
 
 ```bash
-git clone --recurse-submodules https://github.com/dangdd2003/dotfiles.git ~/dotfiles
+git clone --recurse-submodules https://github.com/dangdd2003/dotfiles.git ~/.dotfiles
 ```
 
 - ssh (developer):
 
 ```bash
-git clone --recurse-submodules git@github.com:dangdd2003/dotfiles.git ~/dotfiles
+git clone --recurse-submodules git@github.com:dangdd2003/dotfiles.git ~/.dotfiles
 ```
 
 ### Link configuration file
@@ -63,7 +64,6 @@ git clone --recurse-submodules git@github.com:dangdd2003/dotfiles.git ~/dotfiles
 - Linking only config file must create parent folder first:
 
 ```bash
-mkdir ~/.config/alacritty
 mkdir ~/.config/tmux
 mkdir ~/.config/neofetch
 ```

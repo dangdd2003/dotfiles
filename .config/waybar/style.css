@@ -1,0 +1,146 @@
+* {
+  border: none;
+  border-radius: 0px;
+  font-family: "JetBrainsMono Nerd Font";
+  /*font-family: "Blex Mono Nerd Font";*/
+  font-weight: bold;
+  font-size: 10px;
+  min-height: 10px;
+}
+
+@import "macchiato.css";
+
+window#waybar {
+  background: @surface1;
+  opacity: 0.7;
+}
+
+tooltip {
+  background: @base;
+  color: @text;
+  border-radius: 5px;
+  border: 2px solid @rosewater;
+  opacity: 0.9;
+}
+
+#custom-os {
+  color: @blue;
+  padding-right: 3px;
+}
+
+#workspaces {
+  background: @rosewater;
+  transition: 0.2s ease;
+  padding-right: 3px;
+  border-radius: 10px;
+}
+
+#workspaces button {
+  color: @base;
+  box-shadow: none;
+  text-shadow: none;
+  border-radius: 10px;
+  transition: 0.2s ease;
+  padding-left: 4px;
+  padding-right: 4px;
+  animation: ws_normal 20s ease-in-out 1;
+}
+
+#workspaces button.active {
+  color: @maroon;
+  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.55, 0.68, 0.48, 1.682);
+}
+
+#workspaces button:hover {
+  background: none;
+  color: @sky;
+  animation: ws_hover 20s ease-in-out 1;
+  transition: all 0.5s cubic-bezier(0.55, -0.68, 0.48, 1.682);
+}
+
+#idle_inhibitor {
+  color: @red;
+  padding-right: 10px;
+}
+
+#clock {
+  color: @teal;
+}
+
+#tray {
+  padding-left: 7px;
+  padding-right: 7px;
+  border-radius: 10px;
+}
+
+#backlight {
+  color: @sapphire;
+  padding-right: 4px;
+}
+
+#wireplumber {
+  color: @peach;
+  padding-right: 3px;
+}
+
+#wireplumber.muted {
+  color: @red;
+}
+
+#battery {
+  color: @green;
+}
+
+#battery.warning:not(.charging) {
+  color: @yellow;
+}
+
+#battery.critical:not(.charging) {
+  color: @red;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#bluetooth {
+  color: @blue;
+  padding-left: 4px;
+  padding-right: 6px;
+}
+
+#network {
+  color: @flamingo;
+}
+
+#custom-power {
+  color: @text;
+  padding-right: 3px;
+}
+
+#custom-os,
+#idle_inhibitor,
+#clock,
+#tray,
+#backlight,
+#wireplumber,
+#battery,
+#bluetooth,
+#network,
+#custom-power,
+#custom-l_end,
+#custom-r_end {
+  background: @base;
+}
+
+#custom-r_end {
+  border-radius: 0px 10px 10px 0px;
+  padding-right: 3px;
+}
+
+#custom-l_end {
+  border-radius: 10px 0px 0px 10px;
+  padding-left: 3px;
+}
